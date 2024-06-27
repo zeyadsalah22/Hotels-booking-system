@@ -56,3 +56,12 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
+
+def search(request):
+    if request.method == "POST":
+        place = request.POST["place"]
+        checkin = request.POST["checkin"]
+        checkout = request.POST["checkout"]
+        order = request.POST["order"]
+        price = request.POST["price"]
+        rating = request.POST["rating"]

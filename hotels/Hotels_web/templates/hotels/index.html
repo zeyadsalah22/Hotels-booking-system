@@ -1,1 +1,65 @@
 {% extends 'hotels/layout.html' %}
+{% block content %}
+    <div class="container">
+        <form action="{% url 'search' %}" method="post">
+            {% csrf_token %}
+            <div class="input-group my-5">
+                <input type="text" class="form-control" name="place" placeholder="Place">
+                <div class="input-group-append">
+                    <select class="form-select" name="price">
+                        <option value="0">Price</option>
+                        <option value="1">0-20 $</option>
+                        <option value="2">21-50 $</option>
+                        <option value="3">51-100 $</option>
+                        <option value="4">101-200 $</option>
+                        <option value="5">201-500 $</option>
+                        <option value="6">500+ $</option>
+                    </select>
+                </div>
+                <div class="input-group-append">
+                    <select class="form-select" name="rating">
+                        <option value="0">Rating</option>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
+                </div>
+                <div class="input-group-append">
+                    <select class="form-select" name="order">
+                        <option value="0">Order</option>
+                        <option value="1">Price Ascending</option>
+                        <option value="2">Price Descending</option>
+                        <option value="3">Rating Ascending</option>
+                        <option value="4">Rating Descending</option>
+                    </select>
+                </div>
+                <input type="date" class="form-control" name="checkin" placeholder="Check In">
+                <input type="date" class="form-control" name="checkout" placeholder="Check Out">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center my-5">Hotels</h1>
+            </div>
+        </div>
+        <div class="row">
+            {% for hotel in hotels %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="{{ hotel.image }}" class="card-img-top" alt="{{ hotel.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ hotel.name }}</h5>
+                            <p class="card-text">{{ hotel.description }}</p>
+                            <p class="card-text">Price: ${{ hotel.price }}</p>
+                            <a href="{% url 'hotel' hotel.id %}" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
