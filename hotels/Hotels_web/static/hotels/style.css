@@ -12,6 +12,7 @@ body::before {
 
 nav{
     opacity: 0.8;
+    margin-bottom: 70px;
 }
 
 .logo{
@@ -20,7 +21,4 @@ nav{
     margin-left: 10px;
 }
 
-.nav-item{
-    position: absolute;
-    right:10px;
-}
+

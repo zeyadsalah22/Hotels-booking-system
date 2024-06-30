@@ -4,25 +4,24 @@
         <form action="{% url 'search' %}" method="post">
             {% csrf_token %}
             <div class="input-group my-5">
-                <input type="text" class="form-control" name="place" placeholder="Place">
+                <input type="text" class="form-control" name="place" placeholder="City, Country">
                 <div class="input-group-append">
                     <select class="form-select" name="price">
                         <option value="0">Price</option>
-                        <option value="1">0-20 $</option>
-                        <option value="2">21-50 $</option>
-                        <option value="3">51-100 $</option>
-                        <option value="4">101-200 $</option>
-                        <option value="5">201-500 $</option>
-                        <option value="6">500+ $</option>
+                        <option value="1">1-50 $</option>
+                        <option value="2">51-100 $</option>
+                        <option value="3">101-150 $</option>
+                        <option value="4">151-200 $</option>
+                        <option value="5">200+ $</option>
                     </select>
                 </div>
                 <div class="input-group-append">
                     <select class="form-select" name="rating">
                         <option value="0">Rating</option>
-                        <option value="1">1 Star</option>
-                        <option value="2">2 Stars</option>
-                        <option value="3">3 Stars</option>
-                        <option value="4">4 Stars</option>
+                        <option value="1">>1 Star</option>
+                        <option value="2">>2 Stars</option>
+                        <option value="3">>3 Stars</option>
+                        <option value="4">>4 Stars</option>
                         <option value="5">5 Stars</option>
                     </select>
                 </div>
@@ -43,19 +42,21 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center my-5">Hotels</h1>
+                <h1 class="text-center my-5">Rooms</h1>
             </div>
         </div>
         <div class="row">
-            {% for hotel in hotels %}
+            {% for room in rooms %}
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <img src="{{ hotel.image }}" class="card-img-top" alt="{{ hotel.name }}">
+                        <img src="{{ room.image.url }}" class="card-img-top" alt="{{ room.hotel.name }}">
                         <div class="card-body">
-                            <h5 class="card-title">{{ hotel.name }}</h5>
-                            <p class="card-text">{{ hotel.description }}</p>
-                            <p class="card-text">Price: ${{ hotel.price }}</p>
-                            <a href="{% url 'hotel' hotel.id %}" class="btn btn-primary">View</a>
+                            <h5 class="card-title">{{ room.hotel.name }}</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">{{ room.hotel.city }}, {{ room.hotel.country}}</h6>
+                            <p class="card-text">{{ room.description }}</p>
+                            <p class="card-text">{{ room.room_type }}</p>
+                            <p class="card-text">Price: ${{ room.price }}</p>
+                            <a href="{% url 'room' room_id=room.id %}" class="btn btn-primary">View</a>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,39 @@
+{% extends 'hotels/layout.html' %}
+{% block content %}
+    <div class="container">
+        <h3 class="text-center my-5">Room in {{ room.hotel.name }}</h3>
+        <div class="row">
+            <div class="col-md-8">
+                <img src="{{ room.image.url }}" class="img-fluid" alt="{{ room.hotel.name }}">
+                <h5>{{ room.hotel.city }}, {{ room.hotel.country }}</h5>
+                <p>{{ room.description }}</p>
+                <p>{{ room.room_type }}</p>
+                <p>Price: ${{ room.price }}</p>
+            </div>
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">${{room.price}} per night</h5>
+                      <form >
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="date" class="form-control" name="checkin" placeholder="Check In">
+                        </div>
+                        <div class="form-group">
+                            <input type="date" class="form-control" name="checkout" placeholder="Check Out">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Book</button>
+                      <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+                      <p class="card-text">Free cancelation at least 2 days before check in date</p>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${{ room.price }}*3 nights: $150</li>
+                        <li class="list-group-item">Roomify fees: $50</li>
+                      </ul>
+                      <div class="card-footer">
+                        Total: $200
+                      </div>
+                    </div>
+                  </div>
+    </div>
+
+{% endblock %}
