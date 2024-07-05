@@ -42,7 +42,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center my-5">Rooms</h1>
+                <ul class="nav nav-underline justify-content-center">
+                    <li class="nav-item">
+                      <h2><a class="nav-link active" aria-current="page" href="{% url 'index' %}">Rooms</a></h2>
+                    </li>
+                    <li class="nav-item">
+                      <h2><a class="nav-link" style="color:black" href="{% url 'hotels' %}">Hotels</a></h2>
+                    </li>
+                  </ul>
             </div>
         </div>
         <div class="row">

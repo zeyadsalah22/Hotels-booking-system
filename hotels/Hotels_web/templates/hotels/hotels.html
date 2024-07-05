@@ -1,0 +1,56 @@
+{% extends 'hotels/layout.html' %}
+{% block content %}
+    <div class="container">
+        <form action="{% url 'search' %}" method="post">
+            {% csrf_token %}
+            <div class="input-group my-5">
+                <input type="text" class="form-control" name="place" placeholder="City, Country">
+                <div class="input-group-append">
+                    <select class="form-select" name="rating">
+                        <option value="0">Rating</option>
+                        <option value="1">>1 Star</option>
+                        <option value="2">>2 Stars</option>
+                        <option value="3">>3 Stars</option>
+                        <option value="4">>4 Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
+                </div>
+                <div class="input-group-append">
+                    <select class="form-select" name="order">
+                        <option value="0">Order</option>
+                        <option value="3">Rating Ascending</option>
+                        <option value="4">Rating Descending</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-underline justify-content-center">
+                    <li class="nav-item">
+                      <h2><a class="nav-link" style="color:black" aria-current="page" href="{% url 'index' %}">Rooms</a></h2>
+                    </li>
+                    <li class="nav-item">
+                      <h2><a class="nav-link active" href="{% url 'hotels' %}">Hotels</a></h2>
+                    </li>
+                  </ul>
+            </div>
+        </div>
+        <div class="row">
+            {% for hotel in hotels %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="{{ hotel.image.url }}" class="card-img-top" alt="{{ hotel.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ hotel.name }}</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">{{ hotel.city }}, {{ hotel.country}}</h6>
+                            <a href="" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

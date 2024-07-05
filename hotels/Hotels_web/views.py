@@ -93,3 +93,8 @@ def room(request, room_id):
     return render(request, "hotels/room.html", {
         "room": room
     })                   
+
+def hotels(request):
+    return render(request, "hotels/hotels.html", {
+        "hotels": Hotel.objects.all()
+    })
